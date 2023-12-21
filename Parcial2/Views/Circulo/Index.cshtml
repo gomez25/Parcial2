@@ -1,0 +1,32 @@
+﻿@model Parcial2.Models.CirculoModel
+
+<h2>Calculadora para Círculo</h2>
+
+@using (Html.BeginForm("Calcular", "Circulo", FormMethod.Post))
+{
+    <div>
+        <label for="Radio">Radio:</label>
+        @Html.TextBoxFor(m => m.Radio, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label for="Operacion">Seleccione la operación:</label>
+        @Html.DropDownListFor(m => m.Validar, new List<SelectListItem>
+    {
+    new SelectListItem { Text = "Calcular Perímetro", Value = "false" },
+    new SelectListItem { Text = "Calcular Área", Value = "true" }
+    }, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+}
+
+@section ResultSection
+{
+    @if (ViewBag.Results != null && ViewBag.Results.ContainsKey("ResultadoCirculo"))
+    {
+        <span>@ViewBag.Results["ResultadoCirculo"]</span>
+    }
+}

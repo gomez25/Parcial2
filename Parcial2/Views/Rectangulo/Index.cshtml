@@ -1,0 +1,37 @@
+﻿@model Parcial2.Models.RectanguloModel
+
+<h2>Calculadora para Rectángulo</h2>
+
+@using (Html.BeginForm("Calcular", "Rectangulo", FormMethod.Post))
+{
+    <div>
+        <label for="Largo">Largo:</label>
+        @Html.TextBoxFor(m => m.Largo, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label for="Ancho">Ancho:</label>
+        @Html.TextBoxFor(m => m.Ancho, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label for="Operacion">Seleccione la operación:</label>
+        @Html.DropDownListFor(m => m.Validar, new List<SelectListItem>
+    {
+    new SelectListItem { Text = "Calcular Perímetro", Value = "false" },
+    new SelectListItem { Text = "Calcular Área", Value = "true" }
+    }, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+}
+
+@section ResultSection
+{
+    @if (ViewBag.Results != null && ViewBag.Results.ContainsKey("ResultadoRectangulo"))
+    {
+        <span>@ViewBag.Results["ResultadoRectangulo"]</span>
+    }
+}
